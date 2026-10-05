@@ -1,27 +1,11 @@
-NFA DESIGN 1 — LAST STEPS
+NFA DESIGN EXERCISE 1
 
-The five NFAs, ordered test files, reports, actual JFLAP batch results, and step screenshots are complete. All 85 batch tests passed.
+Public repository:
+https://github.com/AtalayDoganay/NFA-Design-Exercise-1
 
-1. MAKE THREE DRAWINGS
-Open the three images below. Follow every branch and reproduce the computation on paper, making sure you understand why each path accepts or dies.
+Completed: five NFA files, five ordered test files, five reports, actual JFLAP batch screenshots, and three student hand-drawn photos with matching step screenshots.
 
-  images/n08-tree-guide.png — problem 08, input 010
-  images/n11-tree-guide.png — problem 11, input 1101
-  images/n24-tree-guide.png — problem 24, input 001
+Handwritten inputs: #08 01110 (Accept), #11 11001 (Reject), #24 0010 (Accept).
+The report captions clarify missing handwritten labels; the photos themselves are unchanged.
 
-Each node means: current state | input still unread.
-Lambda (or epsilon) means no input is consumed.
-A path accepts only when no input remains and its state is final.
-An NFA accepts if at least one complete path accepts.
-
-Photograph each drawing. Send the three photographs to this chat so they can be inserted into the reports. The guide images are computer-generated study aids; the assignment separately requires hand-drawn trees.
-
-2. CHECK YOUR COURSE LIST AND LEARNING SUMMARY
-The statements were transcribed from the class repositories you supplied. Compare #07, #08, #11, #23, and #24 with Teams. Read README.md and add any personal difficulty, prediction error, or question you actually encountered. Its current summary describes the assisted work and the observed results.
-
-3. FINISH AND SUBMIT
-Public repository: https://github.com/AtalayDoganay/NFA-Design-Exercise-1
-The prepared files are published here. Add the hand-drawn photographs and commit real changes as they are completed.
-Verify the images display. Submit the public repository URL on the assignment page. Uploading files to GitHub alone does not submit the assignment.
-
-Current status: hand-drawn photos, Teams confirmation, and assignment submission are outstanding. The README acknowledges AI assistance as requested by the professor.
+Before submitting, confirm the problem list in Teams and review the README learning summary. Submit the repository URL in the assignment's Enter Web URL box.

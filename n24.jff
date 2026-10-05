@@ -3,55 +3,65 @@
   <type>fa</type>
   <automaton>
     <state id="0" name="q0">
-      <x>80.0</x>
-      <y>240.0</y>
+      <x>80</x>
+      <y>240</y>
       <initial />
     </state>
-    <state id="1" name="q1">
-      <x>230.0</x>
-      <y>100.0</y>
-    </state>
-    <state id="2" name="q2">
-      <x>430.0</x>
-      <y>100.0</y>
-      <final />
-    </state>
-    <state id="3" name="q3">
-      <x>230.0</x>
-      <y>340.0</y>
-    </state>
-    <state id="4" name="q4">
-      <x>390.0</x>
-      <y>340.0</y>
-    </state>
     <state id="5" name="q5">
-      <x>550.0</x>
-      <y>340.0</y>
+      <x>230</x>
+      <y>340</y>
     </state>
     <state id="6" name="q6">
-      <x>710.0</x>
-      <y>340.0</y>
+      <x>430</x>
+      <y>340</y>
+      <final />
+    </state>
+    <state id="1" name="q1">
+      <x>230</x>
+      <y>100</y>
+    </state>
+    <state id="2" name="q2">
+      <x>390</x>
+      <y>100</y>
+    </state>
+    <state id="3" name="q3">
+      <x>550</x>
+      <y>100</y>
+    </state>
+    <state id="4" name="q4">
+      <x>710</x>
+      <y>100</y>
       <final />
     </state>
     <transition>
       <from>0</from>
-      <to>1</to>
+      <to>5</to>
       <read />
     </transition>
     <transition>
       <from>0</from>
-      <to>3</to>
+      <to>1</to>
       <read />
     </transition>
     <transition>
-      <from>1</from>
-      <to>1</to>
+      <from>5</from>
+      <to>5</to>
       <read>1</read>
     </transition>
     <transition>
-      <from>2</from>
-      <to>2</to>
+      <from>6</from>
+      <to>6</to>
       <read>1</read>
+    </transition>
+    <transition>
+      <from>5</from>
+      <to>6</to>
+      <read>0</read>
+    </transition>
+    <transition>
+      <from>6</from>
+      <to>5</to>
+      <read>0</read>
     </transition>
     <transition>
       <from>1</from>
@@ -60,22 +70,12 @@
     </transition>
     <transition>
       <from>2</from>
-      <to>1</to>
+      <to>3</to>
       <read>0</read>
     </transition>
     <transition>
       <from>3</from>
       <to>4</to>
-      <read>0</read>
-    </transition>
-    <transition>
-      <from>4</from>
-      <to>5</to>
-      <read>0</read>
-    </transition>
-    <transition>
-      <from>5</from>
-      <to>6</to>
       <read>1</read>
     </transition>
   </automaton>

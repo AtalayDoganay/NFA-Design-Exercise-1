@@ -1,8 +1,6 @@
 # NFA Design Exercise 1 — Atalay Doganay
 
-Five NFAs over the alphabet {0,1}, with test strings and JFLAP 7.1 results.
-
-**Before submission:** add the three hand-drawn tree photographs, review the reflection below against your own understanding, and confirm the problem numbering in Teams. Then submit this public repository URL on the assignment page.
+Five NFAs over {0,1}, ordered test files, reports, actual JFLAP results, and three hand-drawn computation trees.
 
 | Problem | Language | Report |
 |---|---|---|
@@ -12,47 +10,57 @@ Five NFAs over the alphabet {0,1}, with test strings and JFLAP 7.1 results.
 | 23 | Odd length or exactly 01 | [n23r.md](n23r.md) |
 | 24 | Odd number of zeros or exactly 001 | [n24r.md](n24r.md) |
 
-Each problem has `nNN.jff`, `nNNt.txt`, and `nNNr.md`. The text files contain eight accepted strings followed by eight rejected strings, with one string per line. The empty string was added separately using JFLAP's Enter Lambda control because Load Inputs skips blank lines.
+Each problem has `nNN.jff`, `nNNt.txt`, and `nNNr.md`. Each test file contains eight accepted strings followed by eight rejected strings, one per line. The empty string is added separately using JFLAP's Enter Lambda control because Load Inputs skips blank lines.
 
-## Testing
+## Validation and handwritten traces
 
-All five files were opened in the official JFLAP 7.1 application. The actual Multiple Run pane produced 85 results in total: 17 per NFA, including the empty string. Every result matched the expected language. The reports contain the actual batch screenshots and, for #08, #11, and #24, initial and step-by-step screenshots from Step with Closure. See [jflap-validation.txt](jflap-validation.txt) for the recorded results.
+All five files were run in the official JFLAP 7.1 application. The 85 Multiple Run results (17 per NFA, including the empty string) matched their expected outcomes. The reports contain the actual NFA and batch screenshots. The independent Python verifier also passed all 40,955 binary inputs of length 0 through 12 across the five NFAs. Finite testing is evidence, not a proof for every input length.
 
-An independent Python checker also passed every binary string of length 0 through 12: 40,955 checks across the five NFAs. This finite test range is additional evidence, not a proof for all input lengths. The explanation in each report gives the reason for the construction.
+The submitted handwritten trees and matching Step with Closure screenshots use:
+
+| Problem | Input | Outcome |
+|---|---|---|
+| 08 | `01110` | Accept |
+| 11 | `11001` | Reject |
+| 24 | `0010` | Accept |
+
+These inputs differ from the earlier study guides. The reports, screenshots, and #11 test file were updated to match the photographs. Problem #24's states were renamed to match the drawing: q1–q4 form the exact-001 branch; q5/q6 track even/odd zero parity. Renaming does not change the language. The original handwritten photos are preserved; missing labels and final-state markings are explicitly clarified beside each photo.
 
 ## Learning summary from the assisted work
 
-### Difficult cases and selection
+### Difficult cases and choices
 
-Problem #08 needs particular care because its prefix and suffix can overlap. The shortest accepted string is `010`, not `0110`. After reading `01`, the NFA needs both q2 (continue scanning) and q3 (the final `10` may have already begun). Leaving out q3 would incorrectly reject `010`.
+Problem #08 requires care because its prefix and suffix may overlap. The shortest accepted string is `010`, not `0110`. After `01`, both q2 and q3 must be possible. The longer handwritten example `01110` also shows why early guesses of the final `10` can fail while another branch survives.
 
-These five problems were selected to cover suffix matching, overlapping conditions, the position of a bit, and two OR constructions. This work focuses on the required five; the remaining problems were not attempted or assessed for difficulty.
+Problem #11 highlights a different trap: reaching a final state while input remains does not accept the complete string. In `11001`, earlier branches reach q2 and stop, while the complete paths end at nonfinal q0 and q1.
 
-### Challenging strings and state tracking
+These five problems cover suffix matching, overlapping conditions, a bit's position, and two OR constructions. The other problems were not attempted or assessed for difficulty in this work.
 
-No unexpected accept/reject results appeared in the recorded runs. Three boundary cases were examined in detail:
+### Challenging strings and corrections
 
-- **#08, `010`:** both q2 and q3 are possible after `01`. The final `0` reaches q4 on one path, so the input is accepted.
-- **#11, `1101`:** a path can reach final state q2 while input remains. That does not accept the complete string. After the last symbol, the live states are q0 and q1; neither is final, so the input is rejected. Dead q2 configurations may remain visible in red in JFLAP.
-- **#24, `001`:** the parity branch rejects because there are two zeros, but the exact-string branch reaches final state q6. One accepting path is sufficient, so the input is accepted. `0011` is rejected, showing that the exception is exactly `001`, not any string beginning with it.
+No unexpected accept/reject outcomes appeared in the recorded runs. The three handwritten examples were examined as challenging computation cases rather than presented as invented failed tests.
 
-The recorded runs matched the predictions for all three cases. The main risk in each example is overlooking a possible branch or accepting before the whole string has been read.
+For #24, `0010` has three zeros and is accepted by the parity branch. The exact-string branch reaches q4 at `001`, but cannot consume the extra `0`. Conversely, the batch case `001` is accepted by the exact-string branch even though its number of zeros is even. One complete accepting path is enough.
 
-### How to avoid similar errors
+Reviewing the handwritten pages revealed omitted transition labels and differences from the earlier guide inputs/state names. The reports identify those notation omissions; the formal JFLAP file and the matching step captures make the intended computation explicit. This is why matching the exact input and the exact state names across drawings and software matters.
 
-Track a set of possible states after every symbol rather than choosing a single path. Take lambda closure before reading the first symbol and after each move. Keep branches that are still possible, remove paths that cannot continue, and only accept if at least one path has consumed the entire input in a final state. Tests should include the empty string, shortest accepted strings, overlapping patterns, and near misses formed by adding or changing one bit. These checks help reveal missed cases in parsers and other state-based systems, as well as in course exercises.
+### Avoiding future errors
 
-Step by State shows individual transitions, including lambda moves as separate steps. Step with Closure automatically includes states reachable by zero or more lambda moves. Lambda consumes no input. Both methods recognize the same language.
+Track every possible state after each symbol, apply lambda closure, and retain all viable branches. Check acceptance only after consuming the entire input. Include empty strings, shortest accepted inputs, overlaps, and one-symbol near misses in tests. In a compiler or other state-based controller, missed branches or premature acceptance can change behavior; explicit transition tables and boundary tests help expose these errors.
 
-### AI help and references
+Step by State exposes individual transitions, including lambda transitions. Step with Closure includes states reachable through lambda moves automatically. Lambda consumes no input; both simulations recognize the same language.
 
-ChatGPT/Codex was used to prepare and explain the NFAs, create test cases, check JFLAP input conventions, run JFLAP through UI automation, capture its results, and draft these reports. The explanations and recorded results above describe that assisted work. The student's own tree drawings are still required.
+### Assistance and references
 
-The following supplied repositories were used as references for problem statements and organization. Their images, hand-drawn trees, and personal reflections were not reused. The NFA files and tests in this repository were prepared separately; standard solutions may naturally use similar constructions.
+ChatGPT/Codex helped construct and explain the NFAs, prepare tests, run JFLAP through UI automation, capture results, and draft reports. Atalay supplied the handwritten photographs. The supplied class repositories informed problem statements, organization, and drawing examples; their image files and personal reflections are not submitted as Atalay's work. Standard NFA constructions may naturally resemble one another.
 
-- [Matthew's examples](https://github.com/c50-31-26F/Matthew_Sychareun_NFA_Design_Exercise_1): statements for #08, #11, #23, and #24.
-- [Elliot's examples](https://github.com/esb5192/NFA-design-exercises-1): statement for #07 and report organization.
+- [Matthew's examples](https://github.com/c50-31-26F/Matthew_Sychareun_NFA_Design_Exercise_1): problem statements and handwritten-tree examples.
+- [Elliot's examples](https://github.com/esb5192/NFA-design-exercises-1): problem #07 and report organization.
 - [Robert's examples](https://github.com/RobertSotelo/NFA_design_exercises_1): repository organization.
-- [JFLAP](https://www.jflap.org/): application used for the captured results.
+- [JFLAP](https://www.jflap.org/): application used for the results.
 
-The official JFLAP JAR used for the captures has SHA-256 `a22c095ddc56b18163e8ebeeef165b3a04cb570f35eb46b96105166e06c99406`. The automation source is in `tools/Capture.java`; it invokes JFLAP's real Multiple Run and Step with Closure actions and captures the application window without altering result pixels. JFLAP itself is not bundled here.
+The actual capture source is `tools/Capture.java`; validation records are in `jflap-validation.txt` and `validation.txt`. The official JFLAP JAR SHA-256 is `a22c095ddc56b18163e8ebeeef165b3a04cb570f35eb46b96105166e06c99406`.
+
+## Before submitting
+
+Confirm the five problem statements/numbers against Teams and review this learning summary against your own understanding. Submit the public repository URL on the assignment page; publishing on GitHub does not itself submit to the course.

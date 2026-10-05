@@ -82,7 +82,7 @@ public class Capture {
       });
       shot(tag+"-batch");
       System.out.println(tag+": 17 JFLAP batch results match");
-      String input=n==8?"010":n==11?"1101":n==24?"001":null;
+      String input=n==8?"01110":n==11?"11001":n==24?"0010":null;
       if(input!=null){
         edt(()->{new Steps(machine,frame.getEnvironment(),input).actionPerformed(new ActionEvent(frame,0,"step"));split((Component)frame.getEnvironment().getActive(),false);});
         shot(tag+"-step-00");

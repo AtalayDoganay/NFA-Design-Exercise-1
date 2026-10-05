@@ -50,7 +50,7 @@ n11	01	Reject
 n11	100	Reject
 n11	101	Reject
 n11	1100	Reject
-n11	1101	Reject
+n11	11001	Reject
 n11	<empty>	Reject
 n23	0	Accept
 n23	1	Accept
