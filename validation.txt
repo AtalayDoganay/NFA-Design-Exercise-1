@@ -1,0 +1,13 @@
+NFA validation — independent Python state-set simulator
+This file records independent Python checks. Actual JFLAP results are in jflap-validation.txt.
+Inputs tested exhaustively: all binary strings of length 0 through 12.
+
+n07: PASS — 8,191 exhaustive binary cases; 16 ordered file tests; empty input Reject; 4 nonbinary checks.
+n08: PASS — 8,191 exhaustive binary cases; 16 ordered file tests; empty input Reject; 4 nonbinary checks.
+n11: PASS — 8,191 exhaustive binary cases; 16 ordered file tests; empty input Reject; 4 nonbinary checks.
+n23: PASS — 8,191 exhaustive binary cases; 16 ordered file tests; empty input Reject; 4 nonbinary checks.
+n24: PASS — 8,191 exhaustive binary cases; 16 ordered file tests; empty input Reject; 4 nonbinary checks.
+
+Total: 40,955 exhaustive binary cases passed.
+Finite testing is not a proof for all lengths; read the construction explanation in each report.
+JFLAP GUI screenshots and results are recorded separately in the problem reports.

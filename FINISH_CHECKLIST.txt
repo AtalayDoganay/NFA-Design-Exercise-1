@@ -1,0 +1,28 @@
+WHAT IS ALREADY DONE
+Five JFLAP NFA files, five ordered test files, five reports, five actual batch screenshots, NFA screenshots, and step-by-step screenshots for #08, #11, and #24.
+All 85 JFLAP batch results matched the expected results, including the five empty-string tests.
+
+WHAT YOU STILL NEED TO DO
+1. Confirm the problem statements/numbers against Teams.
+2. Draw these THREE computation trees on paper and photograph them:
+   #08 — input 010 — Accept
+   #11 — input 1101 — Reject
+   #24 — input 001 — Accept
+   The images folder contains n08-tree-guide.png, n11-tree-guide.png, and n24-tree-guide.png. Use these to understand each branch, then make your own drawings.
+   Save your photographs as n08-hand-tree.jpg, n11-hand-tree.jpg, n24-hand-tree.jpg in images/.
+   Put each photograph in its report using, for example:
+   ![Hand-drawn computation tree](images/n08-hand-tree.jpg)
+3. Read the README reflection. Revise it to describe your actual understanding, difficulty, and questions. It currently discusses observed results and does not invent personal mistakes.
+4. Add your drawings and reviewed reflection to the public repository:
+   https://github.com/AtalayDoganay/NFA-Design-Exercise-1
+5. Commit your real changes as you finish them. Check all pictures display on GitHub, then submit the repository URL.
+
+TO RUN JFLAP YOURSELF
+Open nNN.jff, choose Input > Multiple Run, then Load Inputs > nNNt.txt.
+Select the final blank row, then click Enter Lambda (or Enter Epsilon) to add the empty-string test.
+Click Run Inputs. The first eight tests should accept; the remaining nine should reject.
+For the tree examples, choose Input > Step with Closure, enter the string above, and click Step once for each bit.
+JFLAP may retain dead configurations in red. Green means an accepting configuration.
+In #11, the final extra Step marks the exhausted non-final paths as rejected without consuming another bit.
+
+Public repository: https://github.com/AtalayDoganay/NFA-Design-Exercise-1
